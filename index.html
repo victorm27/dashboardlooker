@@ -16,29 +16,21 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background:
-    linear-gradient(rgba(6,11,35,0.75), rgba(11,31,79,0.9)),
-    url('fondo.jpg') no-repeat center center / cover;
-   min-height: 100vh;
-}
-
-/* Contenedor principal */
-.viewport {
-  width: 100vw;
-  height: 100vh;
+  background: #060b23; /* Color sólido de respaldo */
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* App */
 .app {
-  width: 1800px;
-  height: 925px;
+  width: 100%;
+  min-height: 100vh;
   position: relative;
-  overflow: hidden;
   color: white;
-
+  padding-bottom: 50px;
   background:
-    linear-gradient(rgba(6,11,35,0.75), rgba(11,31,79,0.9)),
-    url('fondo.jpg') no-repeat center center/cover;
+    linear-gradient(rgba(6,11,35,0.85), rgba(11,31,79,0.95)),
+    url('fondo.jpg') no-repeat center center / cover fixed;
 }
 
 /* Animaciones */
@@ -64,31 +56,35 @@ body {
 }
 
 .logo {
-  height: 180px;
+  height: 120px; /* Tamaño ajustado para laptops */
   filter: drop-shadow(0 0 10px rgba(56,189,248,0.4));
 }
 
 /* Contenedor */
 .container {
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   text-align: center;
-  padding-left: 200px;
+  padding: 0 20px;
 }
 
 /* Título */
 .title {
-  font-size: 48px;
+  font-size: clamp(32px, 5vw, 48px);
   font-weight: 700;
-  margin-top: -10px;
+  margin-top: 20px;
+  letter-spacing: 2px;
 }
 
 .subtitle {
-  margin-top: 10px;
+  margin-top: 15px;
   opacity: 0.8;
   line-height: 1.6;
-  max-width: 900px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  font-size: 16px;
 }
 
 /* Stats */
@@ -96,8 +92,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: stretch;
-  gap: 30px;
-  margin-top: 30px;
+  gap: 20px;
+  margin-top: 40px;
+  flex-wrap: wrap;
 }
 
 /* KPI */
@@ -107,8 +104,7 @@ body {
   border-radius: 20px;
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(10px);
-  box-shadow: 0 0 30px rgba(56,189,248,0.4);
-
+  box-shadow: 0 0 30px rgba(56,189,248,0.3);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -117,6 +113,7 @@ body {
 .kpi span {
   font-size: 14px;
   opacity: 0.7;
+  text-transform: uppercase;
 }
 
 .kpi h1 {
@@ -131,8 +128,7 @@ body {
   border-radius: 20px;
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(10px);
-  box-shadow: 0 0 20px rgba(56,189,248,0.25);
-
+  box-shadow: 0 0 20px rgba(56,189,248,0.2);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -145,13 +141,9 @@ body {
   margin: 8px 0;
 }
 
-.mini-row span {
-  opacity: 0.7;
-}
-
 .mini-row strong {
   color: #38BDF8;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 /* Cards */
@@ -159,41 +151,78 @@ body {
   display: flex;
   justify-content: center;
   gap: 25px;
-  margin-top: 70px;
-  padding-left: 50px;
+  margin-top: 60px;
+  flex-wrap: wrap;
 }
 
 .card {
-  width: 240px;
+  width: 260px;
   padding: 30px;
   border-radius: 20px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.05);
   backdrop-filter: blur(10px);
   text-decoration: none;
   color: white;
   text-align: center;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
 }
 
 .card:hover {
-  transform: translateY(-6px) scale(1.05);
-  box-shadow: 0 0 40px rgba(0,255,255,0.6);
+  transform: translateY(-8px);
+  background: rgba(56,189,248,0.1);
+  box-shadow: 0 0 40px rgba(56,189,248,0.4);
+  border: 1px solid rgba(56,189,248,0.5);
 }
 
 .icon img {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 15px;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
 }
 
-/* 🔥 Logo salud lateral */
+/* Contenedor del Dashboard Embebido */
+#dashboard-viewer {
+  display: none;
+  margin-top: 60px;
+  padding: 20px;
+  width: 100%;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+#dashboard-viewer iframe {
+  width: 100%;
+  height: 850px; /* Altura generosa para que quepa la advertencia de Google */
+  border-radius: 25px;
+  border: 2px solid rgba(56,189,248,0.3);
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+.btn-cerrar {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background: #38BDF8;
+  color: #060b23;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-cerrar:hover {
+  background: white;
+  transform: scale(1.05);
+}
+
+/* Logo salud lateral */
 .logo-salud-left {
   position: absolute;
-  left: 10px;
-  top: 65%;
-  transform: translateY(-50%);
-  height: 120px;
-  opacity: 0.9;
+  left: 20px;
+  bottom: 40px;
+  height: 100px;
+  opacity: 0.7;
   filter: drop-shadow(0 0 10px rgba(56,189,248,0.4));
 }
 </style>
@@ -202,30 +231,22 @@ body {
 
 <body>
 
-<div class="viewport">
 <div class="app">
-
-  <!-- 🔥 Logo lateral -->
   <img src="logoSalud.png" class="logo-salud-left">
 
-  <!-- Header -->
   <div class="header fade-in">
     <img src="Logo_alcaldiaCali.png" class="logo">
     <img src="ODSC.png" class="logo">
   </div>
 
   <div class="container">
-
-    <!-- Título -->
     <div class="title fade-in delay-1">ENFERMEDADES HUÉRFANAS</div>
 
     <div class="subtitle fade-in delay-1">
-      Las enfermedades huérfanas representan un desafío importante para la salud pública debido a su baja prevalencia y alta complejidad. Este espacio presenta información relevante sobre su impacto en la población de Santiago de Cali, apoyando la toma de decisiones y la sensibilización social.
+      Información relevante sobre el impacto de las enfermedades huérfanas en Santiago de Cali, apoyando la toma de decisiones y la sensibilización social.
     </div>
 
-    <!-- Stats -->
     <div class="stats fade-in delay-2">
-
       <div class="kpi">
         <span>Total casos</span>
         <h1>288</h1>
@@ -241,33 +262,61 @@ body {
           <strong>37</strong>
         </div>
       </div>
-
     </div>
 
-    <!-- Cards -->
-    <div class="cards fade-in delay-3">
-
-      <a class="card" href="https://datastudio.google.com/embed/reporting/31c41886-75ab-4ada-8397-2ee1da2839c7/page/F5HYF">
+    <div class="cards fade-in delay-3" id="main-cards">
+      <div class="card" onclick="verDash('https://datastudio.google.com/embed/reporting/31c41886-75ab-4ada-8397-2ee1da2839c7/page/F5HYF')">
         <div class="icon"><img src="iconosocial.png"></div>
         <h3>Contexto Sociodemográfico</h3>
-      </a>
+      </div>
 
-      <a class="card" href="https://datastudio.google.com/embed/reporting/31c41886-75ab-4ada-8397-2ee1da2839c7/page/p_t6zv68ca2d">
+      <div class="card" onclick="verDash('https://datastudio.google.com/embed/reporting/31c41886-75ab-4ada-8397-2ee1da2839c7/page/p_t6zv68ca2d')">
         <div class="icon"><img src="iconoespacial.png"></div>
         <h3>Distribución Espacial</h3>
-      </a>
+      </div>
 
-      <a class="card" href="https://datastudio.google.com/embed/reporting/31c41886-75ab-4ada-8397-2ee1da2839c7/page/p_mm6mc4aa2d">
+      <div class="card" onclick="verDash('https://datastudio.google.com/embed/reporting/31c41886-75ab-4ada-8397-2ee1da2839c7/page/p_mm6mc4aa2d')">
         <div class="icon"><img src="iconoinforme.png"></div>
         <h3>Informe Descriptivo</h3>
-      </a>
+      </div>
+    </div>
 
+    <div id="dashboard-viewer">
+        <iframe id="dash-frame" src="" allowfullscreen></iframe>
+        <br>
+        <button class="btn-cerrar" onclick="cerrarDash()">CERRAR TABLERO</button>
     </div>
 
   </div>
+</div>
 
-</div>
-</div>
+<script>
+function verDash(url) {
+    const viewer = document.getElementById('dashboard-viewer');
+    const frame = document.getElementById('dash-frame');
+    const cards = document.getElementById('main-cards');
+
+    // Ocultar tarjetas para foco total
+    cards.style.display = 'none';
+    
+    // Cargar URL y mostrar
+    frame.src = url;
+    viewer.style.display = 'block';
+
+    // Desplazar suavemente al tablero
+    viewer.scrollIntoView({ behavior: 'smooth' });
+}
+
+function cerrarDash() {
+    const viewer = document.getElementById('dashboard-viewer');
+    const frame = document.getElementById('dash-frame');
+    const cards = document.getElementById('main-cards');
+
+    viewer.style.display = 'none';
+    cards.style.display = 'flex';
+    frame.src = ""; // Limpiar para ahorrar memoria
+}
+</script>
 
 </body>
 </html>
