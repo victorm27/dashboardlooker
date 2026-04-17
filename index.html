@@ -16,7 +16,26 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  background:
+    linear-gradient(rgba(6,11,35,0.75), rgba(11,31,79,0.9)),
+    url('fondo.jpg') no-repeat center center / cover;
+   min-height: 100vh;
+}
+
+/* Contenedor principal */
+.viewport {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* App */
+.app {
+  width: 1800px;
+  height: 925px;
+  position: relative;
+  overflow: hidden;
   color: white;
+
   background:
     linear-gradient(rgba(6,11,35,0.75), rgba(11,31,79,0.9)),
     url('fondo.jpg') no-repeat center center/cover;
@@ -51,9 +70,9 @@ body {
 
 /* Contenedor */
 .container {
-  max-width: 1100px;
-  margin: auto;
+  width: 100%;
   text-align: center;
+  padding-left: 200px;
 }
 
 /* Título */
@@ -65,24 +84,20 @@ body {
 
 .subtitle {
   margin-top: 10px;
-  opacity: 0.7;
-}
-
-.description {
-  max-width: 800px;
-  margin: 15px auto 30px;
-  font-size: 14px;
-  opacity: 0.85;
+  opacity: 0.8;
   line-height: 1.6;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* KPI + tabla en fila */
+/* Stats */
 .stats {
   display: flex;
   justify-content: center;
+  align-items: stretch;
   gap: 30px;
   margin-top: 30px;
-  flex-wrap: wrap;
 }
 
 /* KPI */
@@ -90,11 +105,13 @@ body {
   padding: 25px;
   width: 260px;
   border-radius: 20px;
-
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(10px);
-
   box-shadow: 0 0 30px rgba(56,189,248,0.4);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .kpi span {
@@ -107,26 +124,34 @@ body {
   color: #38BDF8;
 }
 
-/* Mini tabla */
+/* Mini card */
 .mini-card {
   width: 220px;
   padding: 20px;
   border-radius: 20px;
-
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(56,189,248,0.25);
 
-  box-shadow: 0 0 20px rgba(56,189,248,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .mini-row {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  align-items: center;
+  margin: 8px 0;
 }
 
-.mini-card strong {
+.mini-row span {
+  opacity: 0.7;
+}
+
+.mini-row strong {
   color: #38BDF8;
+  font-size: 18px;
 }
 
 /* Cards */
@@ -134,23 +159,20 @@ body {
   display: flex;
   justify-content: center;
   gap: 25px;
-  margin-top: 50px;
-  flex-wrap: wrap;
+  margin-top: 70px;
+  padding-left: 50px;
 }
 
 .card {
   width: 240px;
   padding: 30px;
   border-radius: 20px;
-
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(10px);
-
   text-decoration: none;
   color: white;
-
-  transition: all 0.3s ease;
   text-align: center;
+  transition: 0.3s;
 }
 
 .card:hover {
@@ -158,34 +180,21 @@ body {
   box-shadow: 0 0 40px rgba(0,255,255,0.6);
 }
 
-/* Iconos */
-.icon {
-  font-size: 40px;
-  margin-bottom: 15px;
-}
-
 .icon img {
   width: 100px;
   height: 100px;
+  margin-bottom: 15px;
 }
 
-.logo-salud {
-  position: fixed;
-  bottom: 20px;
-  left: 30px;
-
-  height: 100px;
+/* 🔥 Logo salud lateral */
+.logo-salud-left {
+  position: absolute;
+  left: 10px;
+  top: 65%;
+  transform: translateY(-50%);
+  height: 120px;
   opacity: 0.9;
   filter: drop-shadow(0 0 10px rgba(56,189,248,0.4));
-  z-index: 10;
-}
-
-/* Responsive */
-@media(max-width: 900px){
-  .stats {
-    flex-direction: column;
-    align-items: center;
-  }
 }
 </style>
 
@@ -193,63 +202,72 @@ body {
 
 <body>
 
-<!-- Header -->
-<div class="header fade-in">
-  <img src="Logo_alcaldiaCali.png" class="logo">
-  <img src="ODSC.png" class="logo">
-</div>
+<div class="viewport">
+<div class="app">
 
-<div class="container">
+  <!-- 🔥 Logo lateral -->
+  <img src="logoSalud.png" class="logo-salud-left">
 
-  <!-- Título -->
-  <div class="title fade-in delay-1">ENFERMEDADES HUÉRFANAS</div>
-  <div class="subtitle fade-in delay-1">    Las enfermedades huérfanas representan un desafío importante para la salud pública debido a su baja prevalencia y alta complejidad. Este espacio presenta información relevante sobre su impacto en la población de Santiago de Cali, apoyando la toma de decisiones y la sensibilización social.
-</div>
+  <!-- Header -->
+  <div class="header fade-in">
+    <img src="Logo_alcaldiaCali.png" class="logo">
+    <img src="ODSC.png" class="logo">
+  </div>
 
+  <div class="container">
 
-  <!-- KPI + tabla -->
-  <div class="stats fade-in delay-2">
+    <!-- Título -->
+    <div class="title fade-in delay-1">ENFERMEDADES HUÉRFANAS</div>
 
-    <div class="kpi">
-      <span>Total casos</span>
-      <h1>288</h1>
+    <div class="subtitle fade-in delay-1">
+      Las enfermedades huérfanas representan un desafío importante para la salud pública debido a su baja prevalencia y alta complejidad. Este espacio presenta información relevante sobre su impacto en la población de Santiago de Cali, apoyando la toma de decisiones y la sensibilización social.
     </div>
 
-    <div class="mini-card">
-      <div class="mini-row">
-        <span>Comuna</span>
-        <strong>17</strong>
+    <!-- Stats -->
+    <div class="stats fade-in delay-2">
+
+      <div class="kpi">
+        <span>Total casos</span>
+        <h1>288</h1>
       </div>
-      <div class="mini-row">
-        <span>Casos</span>
-        <strong>37</strong>
+
+      <div class="mini-card">
+        <div class="mini-row">
+          <span>Comuna</span>
+          <strong>17</strong>
+        </div>
+        <div class="mini-row">
+          <span>Casos</span>
+          <strong>37</strong>
+        </div>
       </div>
+
+    </div>
+
+    <!-- Cards -->
+    <div class="cards fade-in delay-3">
+
+      <a class="card" href="https://datastudio.google.com/embed/reporting/31c41886-75ab-4ada-8397-2ee1da2839c7/page/F5HYF">
+        <div class="icon"><img src="iconosocial.png"></div>
+        <h3>Contexto Sociodemográfico</h3>
+      </a>
+
+      <a class="card" href="https://datastudio.google.com/embed/reporting/31c41886-75ab-4ada-8397-2ee1da2839c7/page/p_t6zv68ca2d">
+        <div class="icon"><img src="iconoespacial.png"></div>
+        <h3>Distribución Espacial</h3>
+      </a>
+
+      <a class="card" href="https://datastudio.google.com/embed/reporting/31c41886-75ab-4ada-8397-2ee1da2839c7/page/p_mm6mc4aa2d">
+        <div class="icon"><img src="iconoinforme.png"></div>
+        <h3>Informe Descriptivo</h3>
+      </a>
+
     </div>
 
   </div>
 
-  <!-- Cards -->
-  <div class="cards fade-in delay-3">
-
-    <a class="card" href="https://datastudio.google.com/embed/reporting/31c41886-75ab-4ada-8397-2ee1da2839c7/page/F5HYF">
-      <div class="icon"> <img src="iconosocial.png"></div>
-      <h3>Contexto Sociodemográfico</h3>
-    </a>
-
-    <a class="card" href="https://datastudio.google.com/embed/reporting/31c41886-75ab-4ada-8397-2ee1da2839c7/page/p_t6zv68ca2d">
-      <div class="icon"><img src="iconoespacial.png"></div>
-      <h3>Distribución Espacial</h3>
-    </a>
-
-    <a class="card" href="https://datastudio.google.com/embed/reporting/31c41886-75ab-4ada-8397-2ee1da2839c7/page/p_mm6mc4aa2d">
-      <div class="icon"><img src="iconoinforme.png"></div>
-      <h3>Informe Descriptivo</h3>
-    </a>
-    
-  </div>
 </div>
-
-
+</div>
 
 </body>
 </html>
